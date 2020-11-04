@@ -1,0 +1,209 @@
+@charset 'utf-8';
+
+@import
+  'includes/normalize'
+  , 'includes/variables'
+  , 'includes/mixins'
+  , 'includes/base'
+  , 'includes/mq';
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../../fonts/sourcesanspro/SourceSansPro-Light.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../../fonts/sourcesanspro/SourceSansPro-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../../fonts/sourcesanspro/SourceSansPro-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 600;
+}
+
+.app {
+  position: relative;
+}
+
+a {
+  @include transition(color linear .3s);
+  padding-bottom: 0px;
+  text-decoration: none;
+  color: #222222;
+  &:hover {
+    padding-bottom: 5px;
+    color: $basecolor;
+  }
+}
+
+header {
+  @include box-shadow(0px 9px 7px -6px rgba(0, 0, 0, .1));
+  border-bottom: 1px solid #eeeeee;
+  padding: 10px 20px 10px 40px;
+  background-color: #ffffff;
+  display: inline-block;
+  position: relative;
+  width: $full;
+  .logo {
+    position: relative;
+    margin-top: 5px;
+    > img {
+      width: 140px;
+    }
+  }
+}
+
+header .site-nav {
+  padding: 10px 40px;
+  position: relative;
+  li {
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 1em;
+    &:last-child {
+      margin-right: 0;
+    }
+    a {
+      @include transition(color linear .3s, border-bottom .1s ease, padding-bottom .2s ease-in-out);
+      font-weight: 600;
+      &:hover {
+        border-bottom: 3px solid $basecolor;
+      }
+    }
+  }
+}
+
+.site-hero {
+  display: inline-block;
+  position: relative;
+  margin-top: -7px;
+  font-size: 1.47em;
+  height: $full;
+  width: $full;
+  
+  .info-section, 
+  .realtime-app {
+    display: inline-block;
+    height: $full;
+  }
+}
+
+.info-section {
+  background: $basecolor url('../../images/bg.jpg') no-repeat;
+  @include browser-prefix('background-size', cover);
+  border-right: 1px solid rgba(#D3D3D3, .7);
+  padding: 20px 40px;
+  width: 70%;
+  * {
+    @extend .text-left;
+    color: #f9f9f9;
+  }
+  h1,
+  p {
+    @include text-shadow(0px 2px 10px #333);
+  }
+  h1 {
+    font-size: 2.3em;
+    line-height: 1;
+    cursor: default;
+    padding: 0px;
+  }
+  p {
+    margin-top: 10px;
+  }
+  .disclaimer {
+    margin-top: 10px;
+    p {
+      font-size: .8em;
+    }
+  }
+}
+.realtime-app {
+  background: #F4F5F5;
+  width: 30%;
+  > iframe {
+    position: relative;
+    border: none;
+  }
+}
+
+.bot-platforms {
+  .prompt {
+    margin-bottom: 5px;
+    font-size: 1em;
+    color: #f5f5f5;
+    margin-top: 0;
+  }
+  a {
+    @include transition(background .3s linear);
+    @include border-radius(0px);
+    display: inline-block;
+    background: #333333;
+    margin-bottom: 10px;
+    margin-right: 3px;
+    padding: 8px 15px;
+    font-size: .65em;
+    font-weight: 600;
+    svg {
+      vertical-align: -3px;
+      margin-right: 3px;
+      fill: #f9f9f9;
+      width: 16px;
+    }
+    &:hover {
+      color: #f9f9f9;
+    }
+
+    &:nth-of-type(1) {
+      background: #0084ff;
+      &:hover {
+        background: darken(#0084ff, 8%);
+      }
+    }
+    &:nth-of-type(2) {
+      background: #00aced;
+      &:hover {
+        background: darken(#00aced, 5%);
+      }
+    }
+    &:nth-of-type(3) {
+      background: #0088cc;
+      &:hover {
+        background: darken(#0088cc, 8%);
+      }
+    }
+    &:nth-of-type(4):hover {
+      background: #222222;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+
+  }
+}
+.modal {
+  @include transition(top, visibility .12s ease-in, box-shadow .5s ease .15s);
+  @include transform(translate(-50%, -50%));
+  @include border-radius(2px);
+  background: #BC7474;
+  visibility: hidden;
+  min-height: 228px;
+  position: fixed;
+  padding: 1em;
+  width: 396px;
+  left: 50%;
+  top: 0%;
+  &.visible {
+    visibility: visible;
+    @extend .shadow;
+    top: 50%;
+  }
+}
